@@ -20,19 +20,23 @@ class Solution {
             return newnode;
         }
         
-        Node* temp=head;
+        Node* dummy=new Node(0);
+        dummy->next=head;
+        
         int count=1;
-        while(temp!=NULL && count<pos-1){
+        Node* temp=dummy;
+        while(count<pos && temp!=NULL){
             count++;
             temp=temp->next;
         }
         
         if(temp==NULL) return head;
         
-        
         newnode->next=temp->next;
         temp->next=newnode;
         
-        return head;
+        Node* newhead=dummy->next;
+        delete dummy;
+        return newhead;
     }
 };
