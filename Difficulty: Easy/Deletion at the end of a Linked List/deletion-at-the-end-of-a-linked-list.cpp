@@ -13,16 +13,22 @@ public:
 class Solution {
   public:
     Node* removeLastNode(Node* head) {
-        
-        if(head==NULL || head->next==NULL) return NULL;
-        
-        Node* temp=head;
-        while(temp->next->next!=NULL){
-            temp=temp->next;
-        }
-        delete temp->next;
+         if(head==NULL) return NULL;
+         if(head->next==NULL){
+             Node* temp=head;
+             head=head->next;
+             delete temp;
+             return head;
+         }
+         
+         Node* temp=head;
+         while(temp->next->next!=NULL){
+             temp=temp->next;
+         }
+         
+         Node* lastnode=temp->next;
          temp->next=NULL;
-        
-        return head;
+         delete lastnode;
+         return head;
     }
 };
